@@ -1,0 +1,49 @@
+{
+  "scripts": {
+    "build": "NODE_ENV=production rm -rf dist && rollup -c",
+    "dev": "NODE_ENV=development rm -rf dist && rollup -c -w",
+    "test": "NODE_ENV=test jest",
+    "prepublish": "npm run typecheck && npm run lint && npm test && npm run build",
+    "typecheck": "tsc --noEmit",
+    "lint": "tslint \"src/**/*.{ts,tsx}\""
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.14",
+    "@types/jest": "^23.3.2",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "husky": "^0.14.3",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3",
+    "rollup": "^0.66.2",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-terser": "^3.0.0",
+    "rollup-plugin-uglify": "^6.0.0",
+    "ts-jest": "^23.10.0",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-plugin-prettier": "^2.0.0",
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "rambda": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.17.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js"
+}
