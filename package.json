@@ -1,4 +1,6 @@
 {
+  "name": "apollo-link-redis-cache",
+  "version": "0.0.1",
   "scripts": {
     "build": "NODE_ENV=production rm -rf dist && rollup -c",
     "dev": "NODE_ENV=development rm -rf dist && rollup -c -w",
@@ -9,9 +11,12 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.14",
+    "@types/graphql": "^14.0.3",
+    "@types/ioredis": "^4.0.4",
     "@types/jest": "^23.3.2",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
+    "graphql": "^14.0.2",
     "husky": "^0.14.3",
     "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
@@ -29,6 +34,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
+    "apollo-link": "^1.2.6",
     "rambda": "^1.2.2",
     "rollup-plugin-typescript2": "^0.17.0"
   },
