@@ -44,6 +44,7 @@ const makeRedisMock = (): Mockify<Redis> =>
 
 it('Should hit the cache when cache value is present', (done) => {
   const redisMock = makeRedisMock()
+  // @ts-ignore
   redisMock.get.mockReturnValue(Promise.resolve(MOCK_CACHED_RESULT))
   const sut = createCacheLink(redisMock as any)
   execute(sut, {
@@ -64,6 +65,7 @@ it('Should hit the cache when cache value is present', (done) => {
 
 it('Should cache the result if no value is present', (done) => {
   const redisMock = makeRedisMock()
+  // @ts-ignore
   redisMock.get.mockReturnValue(Promise.resolve(undefined))
   const spy = jest.fn()
   const sut = ApolloLink.from([
@@ -92,10 +94,12 @@ it('Should update the cache when no cache config is present in redis', (done) =>
   const redisMock = makeRedisMock()
   when(redisMock.get)
     .calledWith(QUERY_HASH)
+    // @ts-ignore
     .mockReturnValue(Promise.resolve(MOCK_CACHED_RESULT))
 
   when(redisMock.get)
     .calledWith(`${QUERY_HASH}:cache`)
+    // @ts-ignore
     .mockReturnValue(Promise.resolve(undefined))
 
   const spy = jest.fn()
